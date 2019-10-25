@@ -1,54 +1,10 @@
 <?php
-// require_once('connection.php');
-
-class DB {
-
-    /**
-     * Opens a connection to the database
-     * 
-     * @returns a connection object
-     */
-    public function connect() {
-        $server = 'localhost';
-        $db = 'keatest';
-        $user = 'root';
-        $pwd = '';
-
-        // 'mysql:host=localhost;dbname=keatest;charset=utf8';
-        $DSN = 'mysql:host=' . $server . ';dbname=' . $db . ';charset=utf8';
-        
-        $options = [
-            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_EMULATE_PREPARES   => false,
-        ];
-
-        try {
-            $connections_to_db = new PDO($DSN, $user, $pwd, $options); 
-        } catch (PDOException $e) {
-            echo 'Connection unsuccessful';
-            die('Connection unsuccessful: ' . $connections_to_db->connect_error());
-            exit();
-        }
-        
-        return($connections_to_db);   
-    }
-
-    /**
-     * Closes a connection to the database
-     * 
-     * @param the connection object to disconnect
-     */
-    public function disconnect($conobj) {
-        $conobj = null;
-    }
-}
-
+require_once('connection.php');
 
 class Students
 {
     
-    function list_of_students()
+    function list_of_students() // action
     {
 
         $db = new DB();             // create a new object of the Class DB
@@ -63,7 +19,8 @@ class Students
             while ($row = $stmt->fetch()) {                         // loop through each row in the result from the database
              
                 $results[] = [$row["id"], $row["name"], $row["email"], $row["cpr"]];  // add the result to the results array
-                // [[1, 'Claus Bove', 'clbo@kea.dk', '21212121'], [2, 'Julie Fallon', 'jul@kea.dk', '2121212']]
+                
+                // [[1, 'Claus Bove', 'clbo@kea.dk', '21212121'],        [2, 'Julie Fallon', 'jul@kea.dk', '2121212']]
 
             }
             $stmt = null;           // empty the statement object
@@ -97,6 +54,15 @@ class Students
 
 
 }
+
+
+
+$x = array();
+
+$x[] = 'Claus';
+$x[] = 'clbo';
+
+echo $x[0];
 
 
 ?>

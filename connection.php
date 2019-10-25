@@ -2,17 +2,16 @@
 
     class DB {
 
-        /**
-         * Opens a connection to the database
-         * 
-         * @returns a connection object
-         */
+        // data - attribute
+
         public function connect() {
             $server = 'localhost';
-            $db = 'keatest';
+            $db = 'webdevtest';
             $user = 'root';
             $pwd = '';
 
+
+            // connectionstring
             // 'mysql:host=localhost;dbname=keatest;charset=utf8';
             $DSN = 'mysql:host=' . $server . ';dbname=' . $db . ';charset=utf8';
             
@@ -30,7 +29,7 @@
                 exit();
             }
             
-            return($connections_to_db);   
+            return ($connections_to_db);   
         }
 
         /**
